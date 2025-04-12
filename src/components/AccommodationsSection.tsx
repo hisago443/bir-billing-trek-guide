@@ -30,7 +30,7 @@ const AccommodationsSection = () => {
     },
     {
       id: 3,
-      name: 'Colonel's Resort',
+      name: "Colonel's Resort",
       type: 'Resort',
       rating: 4.5,
       price: '₹4,500',
@@ -41,7 +41,7 @@ const AccommodationsSection = () => {
     },
     {
       id: 4,
-      name: 'The Monk's Retreat',
+      name: "The Monk's Retreat",
       type: 'Eco Lodge',
       rating: 4.6,
       price: '₹1,800',
