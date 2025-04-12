@@ -12,7 +12,7 @@ const RecommendationSection = () => {
     interest: 'adventure',
   });
 
-  // Activity type definitions - updating to make day explicitly optional with ?
+  // Activity type definitions with day property explicitly marked as optional
   type DayActivity = {
     day?: string;
     time: string;
@@ -185,7 +185,7 @@ const RecommendationSection = () => {
           <CardContent className="p-6">
             <h3 className="text-2xl font-bold mb-4">{currentRecommendation.title}</h3>
             <div className="space-y-4">
-              {currentRecommendation.activities.map((item, index) => (
+              {currentRecommendation.activities.map((item: DayActivity, index: number) => (
                 <div key={index} className="flex">
                   <div className="mr-4 flex flex-col items-center">
                     <div className="rounded-full bg-primary w-8 h-8 flex items-center justify-center text-white text-sm">
