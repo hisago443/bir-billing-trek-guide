@@ -202,7 +202,9 @@ const RecommendationSection = () => {
                         <p className="text-sm text-muted-foreground">{item.description}</p>
                       </div>
                       <div className="flex items-center text-sm">
-                        {item.day && <span className="text-secondary font-medium mr-2">{item.day}</span>}
+                        {item.day && (
+                          <span className="text-secondary font-medium mr-2">{item.day}</span>
+                        )}
                         <Clock className="h-3 w-3 text-muted-foreground mr-1" />
                         <span className="text-muted-foreground">{item.time}</span>
                       </div>
