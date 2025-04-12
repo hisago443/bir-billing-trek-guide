@@ -1,9 +1,9 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Calendar, Users, Mountain, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
 const RecommendationSection = () => {
   const [userPreferences, setUserPreferences] = useState({
@@ -12,7 +12,11 @@ const RecommendationSection = () => {
     interest: 'adventure',
   });
 
-  // Activity type definitions with day property explicitly marked as optional
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const [totalPages, setTotalPages] = useState(1);
+  const [cursor, setCursor] = useState<string | null>(null);
+
   type DayActivity = {
     day?: string;
     time: string;
@@ -115,10 +119,34 @@ const RecommendationSection = () => {
     }
   };
 
-  // Determine which recommendation set to display based on current preferences
   const currentRecommendation = userPreferences.days === 1 
     ? recommendations.oneDay[userPreferences.interest as keyof typeof recommendations.oneDay]
     : recommendations.twoDays[userPreferences.interest as keyof typeof recommendations.twoDays];
+
+  useEffect(() => {
+    if (currentRecommendation) {
+      setTotalPages(Math.ceil(currentRecommendation.activities.length / itemsPerPage));
+    }
+  }, [currentRecommendation, itemsPerPage]);
+
+  const getPaginatedActivities = (): DayActivity[] => {
+    if (!currentRecommendation) return [];
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return currentRecommendation.activities.slice(startIndex, startIndex + itemsPerPage);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    
+    const lastItemIndex = (page - 1) * itemsPerPage - 1;
+    if (lastItemIndex >= 0 && currentRecommendation?.activities[lastItemIndex]) {
+      const lastItem = currentRecommendation.activities[lastItemIndex];
+      setCursor(`${lastItem.activity}_${lastItem.time}`);
+    } else {
+      setCursor(null);
+    }
+  };
 
   return (
     <section className="py-16 bg-muted">
@@ -130,7 +158,6 @@ const RecommendationSection = () => {
           </p>
         </div>
         
-        {/* Preference Selectors */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-3xl mx-auto">
           <Card>
             <CardContent className="p-4">
@@ -180,18 +207,17 @@ const RecommendationSection = () => {
           </Card>
         </div>
         
-        {/* Recommendations */}
         <Card className="bg-card shadow-lg max-w-4xl mx-auto">
           <CardContent className="p-6">
             <h3 className="text-2xl font-bold mb-4">{currentRecommendation.title}</h3>
             <div className="space-y-4">
-              {currentRecommendation.activities.map((item: DayActivity, index: number) => (
+              {getPaginatedActivities().map((item: DayActivity, index: number) => (
                 <div key={index} className="flex">
                   <div className="mr-4 flex flex-col items-center">
                     <div className="rounded-full bg-primary w-8 h-8 flex items-center justify-center text-white text-sm">
-                      {index + 1}
+                      {(currentPage - 1) * itemsPerPage + index + 1}
                     </div>
-                    {index < currentRecommendation.activities.length - 1 && (
+                    {index < itemsPerPage - 1 && getPaginatedActivities().length > index + 1 && (
                       <div className="w-0.5 h-full bg-muted mt-1"></div>
                     )}
                   </div>
@@ -213,6 +239,35 @@ const RecommendationSection = () => {
                 </div>
               ))}
             </div>
+            
+            {totalPages > 1 && (
+              <Pagination className="mt-6">
+                <PaginationContent>
+                  {currentPage > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+                    </PaginationItem>
+                  )}
+                  
+                  {Array.from({ length: totalPages }).map((_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink 
+                        isActive={currentPage === index + 1} 
+                        onClick={() => handlePageChange(index + 1)}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  
+                  {currentPage < totalPages && (
+                    <PaginationItem>
+                      <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
+                    </PaginationItem>
+                  )}
+                </PaginationContent>
+              </Pagination>
+            )}
             
             <div className="mt-6 flex justify-center">
               <Button className="bg-primary hover:bg-primary/90">
