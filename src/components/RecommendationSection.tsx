@@ -12,6 +12,19 @@ const RecommendationSection = () => {
     interest: 'adventure',
   });
 
+  // Activity type definitions
+  type DayActivity = {
+    day?: string;
+    time: string;
+    activity: string;
+    description: string;
+  };
+
+  type InterestActivities = {
+    title: string;
+    activities: DayActivity[];
+  };
+
   const recommendations = {
     oneDay: {
       adventure: {
@@ -58,7 +71,7 @@ const RecommendationSection = () => {
           { day: 'Day 1', time: '8:30 AM', activity: 'Paragliding at Billing', description: 'Experience the thrill of flying' },
           { day: 'Day 1', time: '12:00 PM', activity: 'Lunch at Landing Site Cafe', description: 'Quick refreshments' },
           { day: 'Day 1', time: '2:00 PM', activity: 'Hike to Billing', description: 'Scenic uphill trek' },
-          { day: 'Day 1', time: '7:00 PM', activity: 'Dinner and overnight stay', description: 'At Colonel\'s Resort' },
+          { day: 'Day 1', time: '7:00 PM', activity: 'Dinner and overnight stay', description: "At Colonel's Resort" },
           { day: 'Day 2', time: '7:00 AM', activity: 'Breakfast', description: 'At accommodation' },
           { day: 'Day 2', time: '8:30 AM', activity: 'Mountain Biking', description: 'Through forest trails' },
           { day: 'Day 2', time: '1:00 PM', activity: 'Lunch at Four Tables', description: 'Refuel with great food' },
@@ -90,7 +103,7 @@ const RecommendationSection = () => {
           { day: 'Day 1', time: '10:00 AM', activity: 'Guided Meditation', description: 'At Deer Park Institute' },
           { day: 'Day 1', time: '1:00 PM', activity: 'Lunch at Garden Cafe', description: 'Farm-to-table experience' },
           { day: 'Day 1', time: '3:00 PM', activity: 'Nature Walk', description: 'Through pine forests and tea gardens' },
-          { day: 'Day 1', time: '7:00 PM', activity: 'Dinner and overnight stay', description: 'At The Monk\'s Retreat' },
+          { day: 'Day 1', time: '7:00 PM', activity: 'Dinner and overnight stay', description: "At The Monk's Retreat" },
           { day: 'Day 2', time: '6:30 AM', activity: 'Sunrise Meditation', description: 'Peaceful morning practice' },
           { day: 'Day 2', time: '8:00 AM', activity: 'Breakfast', description: 'At accommodation' },
           { day: 'Day 2', time: '10:00 AM', activity: 'Ayurvedic Massage', description: 'Rejuvenating body treatment' },

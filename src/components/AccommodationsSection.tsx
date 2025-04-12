@@ -3,6 +3,7 @@ import React from 'react';
 import { Star, ArrowRight, MapPin, Coffee, Wifi } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 
 const AccommodationsSection = () => {
   const accommodations = [
@@ -62,15 +63,15 @@ const AccommodationsSection = () => {
   };
 
   return (
-    <section className="py-16 container mx-auto px-4">
-      <h2 className="section-title">Places to Stay</h2>
-      <p className="text-muted-foreground max-w-2xl mb-10">
+    <section className="py-16 container mx-auto px-4 bg-background">
+      <h2 className="text-3xl font-bold mb-4 text-center">Places to Stay</h2>
+      <p className="text-muted-foreground max-w-2xl mb-10 mx-auto text-center">
         Discover comfortable and scenic accommodations in Bir Billing, from budget hostels to luxury resorts.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {accommodations.map((accommodation) => (
-          <div key={accommodation.id} className="listing-card">
+          <Card key={accommodation.id} className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
             <div className="relative">
               <img 
                 src={accommodation.image} 
@@ -84,7 +85,7 @@ const AccommodationsSection = () => {
               </div>
             </div>
             
-            <div className="p-4">
+            <CardContent className="p-4">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold text-lg">{accommodation.name}</h3>
                 <div className="flex items-center">
@@ -120,8 +121,8 @@ const AccommodationsSection = () => {
                   View Details
                 </Button>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
       
