@@ -12,7 +12,7 @@ const RecommendationSection = () => {
     interest: 'adventure',
   });
 
-  // Activity type definitions
+  // Activity type definitions - updating to make day explicitly optional with ?
   type DayActivity = {
     day?: string;
     time: string;
