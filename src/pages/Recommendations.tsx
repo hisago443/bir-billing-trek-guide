@@ -63,10 +63,11 @@ const Recommendations = () => {
   const [cursor, setCursor] = useState<string | null>(null);
   const [prevCursors, setPrevCursors] = useState<string[]>([]);
   
-  const { data, isLoading, isPreviousData } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: ['recommendations', cursor],
     queryFn: () => fetchRecommendations(cursor),
-    keepPreviousData: true,
+    placeholderData: (previousData) => previousData,
+    staleTime: 5000,
   });
   
   const handleNextPage = () => {
@@ -146,7 +147,7 @@ const Recommendations = () => {
               <Button
                 variant="outline"
                 onClick={handleNextPage}
-                disabled={!data?.hasMore || isLoading || isPreviousData}
+                disabled={!data?.hasMore || isLoading || isFetching}
               >
                 Next
                 <ChevronRight className="ml-2 h-4 w-4" />
