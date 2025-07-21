@@ -8,8 +8,16 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index";
 import Recommendations from "./pages/Recommendations";
 import NotFound from "./pages/NotFound";
+import Accommodations from "./pages/Accommodations";
+import Treks from "./pages/Treks";
+import Cafes from "./pages/Cafes";
+import { lazy, Suspense } from "react";
 
 const queryClient = new QueryClient();
+
+const AccommodationDetail = lazy(() => import("./pages/AccommodationDetail"));
+const TrekDetail = lazy(() => import("./pages/TrekDetail"));
+const CafeDetail = lazy(() => import("./pages/CafeDetail"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -20,7 +28,25 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/accommodations" element={<Accommodations />} />
+            <Route path="/accommodations/:id" element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <AccommodationDetail />
+              </Suspense>
+            } />
             <Route path="/recommendations" element={<Recommendations />} />
+            <Route path="/treks" element={<Treks />} />
+            <Route path="/treks/:id" element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <TrekDetail />
+              </Suspense>
+            } />
+            <Route path="/cafes" element={<Cafes />} />
+            <Route path="/cafes/:id" element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <CafeDetail />
+              </Suspense>
+            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

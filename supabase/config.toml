@@ -1,1 +1,3 @@
+# This project will use the following Supabase tables:
+# treks, accommodations, bookings, media, activities, cafes
 project_id = "tqiphooudzhkzdoybwag"

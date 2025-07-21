@@ -71,3 +71,23 @@ Yes it is!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Backend API (Node.js/Express)
+
+A backend API will be created in `/backend` using Node.js and Express. It will provide RESTful endpoints for treks, accommodations, and cafes, and connect to Supabase for data storage.
+
+### To run the backend (after setup):
+
+```
+cd backend
+npm install
+npm run dev
+```
+
+The backend will run on http://localhost:3001 by default.
+
+### Connecting Frontend to Backend
+- The frontend will fetch data from the backend API endpoints (e.g., `/api/treks`, `/api/accommodations`, `/api/cafes`).
+- Update environment variables or API URLs in the frontend as needed.
+
+---
