@@ -16,6 +16,15 @@ const Accommodations: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const formatLocation = (location: any): string => {
+    if (!location) return 'Location not specified';
+    if (typeof location === 'string') return location;
+    if (typeof location === 'object' && 'lat' in location && 'lng' in location) {
+      return `Location: (${location.lat}, ${location.lng})`;
+    }
+    return 'Location not specified';
+  };
+
   useEffect(() => {
     const fetchAccommodations = async () => {
       setLoading(true);
@@ -63,9 +72,7 @@ const Accommodations: React.FC = () => {
                     )}
                   </div>
                   <CardDescription className="mb-2">
-                    {acc.location && typeof acc.location === 'object' && 'lat' in acc.location && 'lng' in acc.location
-                      ? `Location: (${acc.location.lat}, ${acc.location.lng})`
-                      : acc.location ? String(acc.location) : 'Location not specified'}
+                    {formatLocation(acc.location)}
                   </CardDescription>
                   {acc.price_range && (
                     <div className="mb-2 text-primary font-semibold">{acc.price_range}</div>

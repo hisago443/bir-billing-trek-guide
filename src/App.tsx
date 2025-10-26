@@ -18,6 +18,7 @@ const queryClient = new QueryClient();
 const AccommodationDetail = lazy(() => import("./pages/AccommodationDetail"));
 const TrekDetail = lazy(() => import("./pages/TrekDetail"));
 const CafeDetail = lazy(() => import("./pages/CafeDetail"));
+const DestinationDetail = lazy(() => import("./pages/DestinationDetail"));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -45,6 +46,11 @@ const App = () => (
             <Route path="/cafes/:id" element={
               <Suspense fallback={<div>Loading...</div>}>
                 <CafeDetail />
+              </Suspense>
+            } />
+            <Route path="/destinations/:slug" element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <DestinationDetail />
               </Suspense>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
