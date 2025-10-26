@@ -34,8 +34,8 @@ export const Navigation = () => {
             <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors">Stay</Link>
             <Link to="/dining" className="text-foreground hover:text-primary transition-colors">Eat</Link>
             <Link to="/activities" className="text-foreground hover:text-primary transition-colors">Activities</Link>
-            <Link to="/cafes" className={location.pathname.startsWith('/cafes') ? 'text-primary font-semibold' : ''}>Cafes</Link>
-            <Link to="/recommendations" className={location.pathname.startsWith('/recommendations') ? 'text-primary font-semibold' : ''}>Recommendations</Link>
+            <Link to="/cafes" className="text-foreground hover:text-primary transition-colors">Cafes</Link>
+            <Link to="/treks" className="text-foreground hover:text-primary transition-colors">Treks</Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -70,8 +70,8 @@ export const Navigation = () => {
               <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Stay</Link>
               <Link to="/dining" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Eat</Link>
               <Link to="/activities" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Activities</Link>
-              <Link to="/cafes" className={location.pathname.startsWith('/cafes') ? 'text-primary font-semibold' : ''}>Cafes</Link>
-              <Link to="/recommendations" className={location.pathname.startsWith('/recommendations') ? 'text-primary font-semibold' : ''}>Recommendations</Link>
+              <Link to="/cafes" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Cafes</Link>
+              <Link to="/treks" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Treks</Link>
               
               <Button className="bg-primary hover:bg-primary/90 w-full">
                 <Search className="h-4 w-4 mr-2" />

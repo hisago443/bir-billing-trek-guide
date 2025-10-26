@@ -6,11 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index";
-import Recommendations from "./pages/Recommendations";
 import NotFound from "./pages/NotFound";
 import Accommodations from "./pages/Accommodations";
 import Treks from "./pages/Treks";
 import Cafes from "./pages/Cafes";
+import Activities from "./pages/Activities";
 import { lazy, Suspense } from "react";
 
 const queryClient = new QueryClient();
@@ -35,7 +35,7 @@ const App = () => (
                 <AccommodationDetail />
               </Suspense>
             } />
-            <Route path="/recommendations" element={<Recommendations />} />
+            <Route path="/activities" element={<Activities />} />
             <Route path="/treks" element={<Treks />} />
             <Route path="/treks/:id" element={
               <Suspense fallback={<div>Loading...</div>}>
