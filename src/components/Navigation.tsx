@@ -32,7 +32,6 @@ export const Navigation = () => {
             <Link to="/" className="text-foreground hover:text-primary transition-colors">Home</Link>
             <Link to="/explore" className="text-foreground hover:text-primary transition-colors">Explore</Link>
             <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors">Stay</Link>
-            <Link to="/dining" className="text-foreground hover:text-primary transition-colors">Eat</Link>
             <Link to="/activities" className="text-foreground hover:text-primary transition-colors">Activities</Link>
             <Link to="/cafes" className="text-foreground hover:text-primary transition-colors">Cafes</Link>
             <Link to="/treks" className="text-foreground hover:text-primary transition-colors">Treks</Link>
@@ -68,7 +67,6 @@ export const Navigation = () => {
               <Link to="/" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Home</Link>
               <Link to="/explore" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Explore</Link>
               <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Stay</Link>
-              <Link to="/dining" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Eat</Link>
               <Link to="/activities" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Activities</Link>
               <Link to="/cafes" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Cafes</Link>
               <Link to="/treks" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Treks</Link>

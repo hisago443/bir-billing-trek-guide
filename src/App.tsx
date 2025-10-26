@@ -11,6 +11,7 @@ import Accommodations from "./pages/Accommodations";
 import Treks from "./pages/Treks";
 import Cafes from "./pages/Cafes";
 import Activities from "./pages/Activities";
+import Explore from "./pages/Explore";
 import { lazy, Suspense } from "react";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/explore" element={<Explore />} />
             <Route path="/accommodations" element={<Accommodations />} />
             <Route path="/accommodations/:id" element={
               <Suspense fallback={<div>Loading...</div>}>

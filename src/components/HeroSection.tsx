@@ -26,10 +26,10 @@ const HeroSection = () => {
         </p>
         
         <div className="flex flex-wrap gap-4 animate-fade-in" style={{animationDelay: '0.4s'}}>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white" onClick={() => window.location.href = '/explore'}>
             Start Exploring <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-white/40 text-white">
+          <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-white/40 text-white" onClick={() => window.location.href = '/explore'}>
             <MapPin className="mr-2 h-5 w-5" /> View Map
           </Button>
         </div>

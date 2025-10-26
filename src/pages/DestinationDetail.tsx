@@ -17,7 +17,6 @@ interface Destination {
   best_time_to_visit: string;
   how_to_reach: string;
   activities: string[];
-  nearby_attractions: string[];
 }
 
 const DestinationDetail = () => {
@@ -109,11 +108,20 @@ const DestinationDetail = () => {
           <div className="lg:col-span-2 space-y-8">
             <Card>
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold mb-4">About This Destination</h2>
-                <div className="prose max-w-none">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {destination.full_article || destination.description}
-                  </p>
+                <div className="prose prose-lg max-w-none">
+                  {destination.full_article ? (
+                    destination.full_article.split('\n\n').map((paragraph, idx) => {
+                      if (paragraph.startsWith('## ')) {
+                        return <h2 key={idx} className="text-2xl font-bold mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+                      } else if (paragraph.startsWith('### ')) {
+                        return <h3 key={idx} className="text-xl font-semibold mt-6 mb-3">{paragraph.replace('### ', '')}</h3>;
+                      } else {
+                        return <p key={idx} className="text-muted-foreground leading-relaxed mb-4">{paragraph}</p>;
+                      }
+                    })
+                  ) : (
+                    <p className="text-muted-foreground leading-relaxed">{destination.description}</p>
+                  )}
                 </div>
               </CardContent>
             </Card>
