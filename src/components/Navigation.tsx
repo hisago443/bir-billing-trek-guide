@@ -28,13 +28,14 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-foreground hover:text-primary transition-colors">Home</Link>
             <Link to="/explore" className="text-foreground hover:text-primary transition-colors">Explore</Link>
-            <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors">Stay</Link>
-            <Link to="/activities" className="text-foreground hover:text-primary transition-colors">Activities</Link>
+            <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors">Hotels</Link>
             <Link to="/cafes" className="text-foreground hover:text-primary transition-colors">Cafes</Link>
+            <Link to="/activities" className="text-foreground hover:text-primary transition-colors">Activities</Link>
             <Link to="/treks" className="text-foreground hover:text-primary transition-colors">Treks</Link>
+            <Link to="/community" className="text-foreground hover:text-primary transition-colors">Community</Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
@@ -66,10 +67,11 @@ export const Navigation = () => {
             <nav className="flex flex-col space-y-4">
               <Link to="/" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Home</Link>
               <Link to="/explore" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Explore</Link>
-              <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Stay</Link>
-              <Link to="/activities" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Activities</Link>
+              <Link to="/accommodations" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Hotels</Link>
               <Link to="/cafes" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Cafes</Link>
+              <Link to="/activities" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Activities</Link>
               <Link to="/treks" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Treks</Link>
+              <Link to="/community" className="text-foreground hover:text-primary transition-colors py-2" onClick={toggleMenu}>Community</Link>
               
               <Button className="bg-primary hover:bg-primary/90 w-full">
                 <Search className="h-4 w-4 mr-2" />
