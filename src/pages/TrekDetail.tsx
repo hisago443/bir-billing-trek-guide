@@ -2,93 +2,185 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { supabase } from '@/integrations/supabase/client';
+import { Database } from '@/integrations/supabase/types';
+import { MapPin, Calendar, TrendingUp, Mountain } from 'lucide-react';
+
+type Trek = Database['public']['Tables']['treks']['Row'];
 
 const TrekDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [trek, setTrek] = useState<any>(null);
+  const [trek, setTrek] = useState<Trek | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTrek = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/treks/${id}`);
-        if (!res.ok) throw new Error('Trek not found');
-        const data = await res.json();
+      if (!id) return;
+      
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('treks')
+        .select('*')
+        .eq('id', id)
+        .single();
+      
+      if (!error && data) {
         setTrek(data);
-      } catch (err: any) {
-        setError(err.message || 'Error fetching trek');
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
-    if (id) fetchTrek();
+    
+    fetchTrek();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  if (error) return <div className="min-h-screen flex items-center justify-center text-red-500">{error}</div>;
-  if (!trek) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Trek not found.</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+  
+  if (!trek) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navigation />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">Trek not found</h2>
+            <Button onClick={() => navigate('/treks')}>Browse Treks</Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      <main className="flex-1 container mx-auto px-4 py-12">
-        <Button variant="outline" className="mb-6" onClick={() => navigate(-1)}>
-          &larr; Back to Treks
-        </Button>
-        <Card className="max-w-3xl mx-auto overflow-hidden">
-          {trek.photos && trek.photos.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {trek.photos.map((url: string, idx: number) => (
-                <img
-                  key={idx}
-                  src={url}
-                  alt={trek.name}
-                  className="w-full h-64 object-cover rounded"
-                />
-              ))}
-            </div>
-          )}
-          <CardContent className="p-6">
-            <CardTitle className="text-2xl mb-2">{trek.name}</CardTitle>
+      
+      {/* Hero Section */}
+      {trek.photos && trek.photos.length > 0 && (
+        <div className="relative h-[60vh] overflow-hidden">
+          <img
+            src={trek.photos[0]}
+            alt={trek.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 container mx-auto px-4 pb-12">
+            <Button 
+              variant="ghost" 
+              className="text-white mb-4 hover:bg-white/20"
+              onClick={() => navigate('/treks')}
+            >
+              ← Back to Treks
+            </Button>
             {trek.difficulty && (
-              <span className="text-xs bg-gray-100 rounded px-2 py-1 mr-2">{trek.difficulty}</span>
+              <Badge className="mb-3 bg-primary text-primary-foreground">
+                {trek.difficulty}
+              </Badge>
             )}
-            {trek.duration && (
-              <span className="text-primary font-semibold ml-2">{trek.duration}</span>
-            )}
-            <CardDescription className="mt-4 mb-2">
-              {trek.starting_point && trek.ending_point && (
-                <span>Route: {trek.starting_point} → {trek.ending_point}</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              {trek.name}
+            </h1>
+            <div className="flex flex-wrap gap-4 text-white/90">
+              {trek.duration && (
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" />
+                  <span>{trek.duration}</span>
+                </div>
               )}
               {trek.distance && (
-                <span className="ml-2">| Distance: {trek.distance}</span>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5" />
+                  <span>{trek.distance}</span>
+                </div>
               )}
-              {trek.elevation_gain && (
-                <span className="ml-2">| Elevation: {trek.elevation_gain}</span>
-              )}
-            </CardDescription>
-            {trek.best_season && (
-              <div className="mb-2">Best Season: {trek.best_season}</div>
-            )}
-            {trek.highlights && trek.highlights.length > 0 && (
-              <div className="mb-2">
-                <span className="font-semibold">Highlights:</span> {trek.highlights.join(', ')}
-              </div>
-            )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Content */}
+      <main className="flex-1 container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-6">
             {trek.description && (
-              <p className="mb-4">{trek.description}</p>
+              <Card>
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold mb-4">About This Trek</h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {trek.description}
+                  </p>
+                </CardContent>
+              </Card>
             )}
-            {trek.contact_info && (
-              <div className="mb-2">Contact: {trek.contact_info}</div>
+
+            {trek.photos && trek.photos.length > 1 && (
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-2xl font-bold mb-4">Gallery</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {trek.photos.slice(1).map((photo, idx) => (
+                      <img
+                        key={idx}
+                        src={photo}
+                        alt={`${trek.name} ${idx + 2}`}
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             )}
-          </CardContent>
-        </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <Card className="sticky top-6">
+              <CardContent className="p-6 space-y-6">
+                <div>
+                  <h3 className="font-semibold mb-3">Trek Details</h3>
+                  <div className="space-y-3">
+                    {trek.start_point && (
+                      <div>
+                        <p className="text-sm text-muted-foreground">Starting Point</p>
+                        <p className="font-medium">{trek.start_point}</p>
+                      </div>
+                    )}
+                    {trek.end_point && (
+                      <div>
+                        <p className="text-sm text-muted-foreground">Ending Point</p>
+                        <p className="font-medium">{trek.end_point}</p>
+                      </div>
+                    )}
+                    {trek.distance && (
+                      <div>
+                        <p className="text-sm text-muted-foreground">Distance</p>
+                        <p className="font-medium">{trek.distance}</p>
+                      </div>
+                    )}
+                    {trek.difficulty && (
+                      <div>
+                        <p className="text-sm text-muted-foreground">Difficulty</p>
+                        <p className="font-medium">{trek.difficulty}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </main>
+
       <Footer />
     </div>
   );
