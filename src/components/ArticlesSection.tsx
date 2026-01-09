@@ -1,48 +1,17 @@
-import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, Clock, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-interface Article {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  featured_image: string;
-  category: string;
-  published_at: string;
-}
+import { articles } from '@/data/siteData';
 
 const ArticlesSection = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const { data, error } = await supabase
-        .from('articles')
-        .select('*')
-        .order('published_at', { ascending: false })
-        .limit(2);
-      
-      if (!error && data) {
-        setArticles(data);
-      }
-      setLoading(false);
-    };
-    
-    fetchArticles();
-  }, []);
-
-  if (loading) return null;
+  const featuredArticles = articles.slice(0, 3);
 
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12 gap-4">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <BookOpen className="h-8 w-8 text-primary" />
@@ -58,14 +27,14 @@ const ArticlesSection = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {articles.map((article) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {featuredArticles.map((article) => (
             <Card 
               key={article.id}
-              className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-500 border-0"
+              className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-500 border-0 bg-card"
               onClick={() => navigate(`/articles/${article.slug}`)}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={article.featured_image} 
                   alt={article.title}
@@ -79,14 +48,50 @@ const ArticlesSection = () => {
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
                   {article.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-3">{article.excerpt}</p>
-                <Button variant="link" className="p-0 h-auto font-semibold group-hover:gap-3 transition-all">
-                  Read More
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <p className="text-muted-foreground mb-4 line-clamp-2 text-sm">{article.excerpt}</p>
+                
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    <span>{article.author}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    <span>{new Date(article.published_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })}</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Featured article highlight */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {articles.slice(3, 5).map((article) => (
+            <Card 
+              key={article.id}
+              className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-500 border-0 bg-card flex flex-col md:flex-row"
+              onClick={() => navigate(`/articles/${article.slug}`)}
+            >
+              <div className="relative w-full md:w-48 h-48 md:h-auto overflow-hidden flex-shrink-0">
+                <img 
+                  src={article.featured_image} 
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              
+              <CardContent className="p-6 flex flex-col justify-center">
+                <span className="text-xs font-semibold text-primary uppercase tracking-wide mb-2">
+                  {article.category}
+                </span>
+                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                  {article.title}
+                </h3>
+                <p className="text-muted-foreground text-sm line-clamp-2">{article.excerpt}</p>
               </CardContent>
             </Card>
           ))}

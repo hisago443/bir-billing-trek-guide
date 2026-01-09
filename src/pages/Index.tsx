@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import HeroSection from '@/components/HeroSection';
 import DestinationsShowcase from '@/components/DestinationsShowcase';
@@ -7,6 +6,7 @@ import CafesSection from '@/components/CafesSection';
 import RentalsSection from '@/components/RentalsSection';
 import TaxiServices from '@/components/TaxiServices';
 import ArticlesSection from '@/components/ArticlesSection';
+import ActivitiesSection from '@/components/ActivitiesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -22,8 +22,9 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <ArticlesSection />
         <DestinationsShowcase />
+        <ActivitiesSection />
+        <ArticlesSection />
         <AccommodationsSection />
         <CafesSection />
         <RentalsSection />
