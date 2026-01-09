@@ -1,42 +1,9 @@
-import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bike, Phone, MapPin, Check } from 'lucide-react';
-
-interface VehicleRental {
-  id: string;
-  provider_name: string;
-  vehicle_type: string;
-  vehicle_model: string;
-  price_per_day: string;
-  contact_number: string;
-  location: string;
-  features: string[];
-}
+import { vehicleRentals } from '@/data/siteData';
 
 const RentalsSection = () => {
-  const [rentals, setRentals] = useState<VehicleRental[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchRentals = async () => {
-      const { data, error } = await supabase
-        .from('vehicle_rentals')
-        .select('*')
-        .order('price_per_day');
-      
-      if (!error && data) {
-        setRentals(data);
-      }
-      setLoading(false);
-    };
-    
-    fetchRentals();
-  }, []);
-
-  if (loading) return null;
-
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -48,8 +15,8 @@ const RentalsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {rentals.map((rental) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {vehicleRentals.map((rental) => (
             <Card key={rental.id} className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
