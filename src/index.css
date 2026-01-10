@@ -5,83 +5,103 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --background: 210 20% 98%;
+    --foreground: 210 40% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 210 40% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 210 40% 12%;
 
-    --primary: 210 20% 25%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 210 70% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 10% 93%;
-    --secondary-foreground: 210 20% 20%;
+    --secondary: 32 90% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 10% 96%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 210 15% 45%;
 
-    --accent: 0 70% 50%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 160 60% 40%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 210 10% 90%;
-    --input: 210 10% 90%;
-    --ring: 210 20% 25%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 70% 45%;
 
-    --radius: 0.25rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 210 70% 45%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 210 15% 94%;
+    --sidebar-accent-foreground: 210 40% 12%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 210 70% 45%;
+
+    /* Adventure theme colors */
+    --adventure: 210 70% 45%;
+    --adventure-foreground: 0 0% 100%;
+    --sunrise: 32 90% 55%;
+    --sunrise-foreground: 0 0% 100%;
+    --forest: 160 60% 40%;
+    --forest-foreground: 0 0% 100%;
+    --mountain: 210 30% 25%;
+    --mountain-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
+    --background: 210 30% 8%;
+    --foreground: 210 15% 95%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 210 25% 12%;
+    --card-foreground: 210 15% 95%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 210 25% 12%;
+    --popover-foreground: 210 15% 95%;
 
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 210 70% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 32 85% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 210 20% 18%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 0 70% 50%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 160 50% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 70%;
+    --border: 210 20% 22%;
+    --input: 210 20% 22%;
+    --ring: 210 70% 55%;
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 210 25% 10%;
+    --sidebar-foreground: 210 15% 95%;
+    --sidebar-primary: 210 70% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 210 20% 18%;
+    --sidebar-accent-foreground: 210 15% 95%;
+    --sidebar-border: 210 20% 20%;
+    --sidebar-ring: 210 70% 55%;
+
+    /* Adventure theme colors - dark mode */
+    --adventure: 210 70% 55%;
+    --adventure-foreground: 0 0% 100%;
+    --sunrise: 32 85% 55%;
+    --sunrise-foreground: 0 0% 100%;
+    --forest: 160 50% 45%;
+    --forest-foreground: 0 0% 100%;
+    --mountain: 210 25% 75%;
+    --mountain-foreground: 210 30% 8%;
   }
 }
 
@@ -97,38 +117,70 @@
 
 @layer components {
   .hero-overlay {
-    @apply absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50;
+    @apply absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/70;
+  }
+  
+  .hero-content {
+    @apply text-white text-center;
   }
   
   .category-card {
-    @apply relative overflow-hidden rounded-sm transition-all duration-500 hover:shadow-2xl;
+    @apply relative overflow-hidden rounded-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-1;
   }
   
   .category-card:hover img {
-    @apply scale-105 transition-transform duration-700 ease-out;
+    @apply scale-110 transition-transform duration-700 ease-out;
   }
   
   .category-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent;
+    @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent;
   }
   
   .map-container {
-    @apply h-[400px] w-full rounded-sm overflow-hidden shadow-lg border border-border;
+    @apply h-[400px] w-full rounded-xl overflow-hidden shadow-xl border border-border;
   }
   
   .listing-card {
-    @apply bg-card rounded-sm overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50;
+    @apply bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border/50 hover:-translate-y-1;
   }
   
   .section-title {
-    @apply text-4xl font-light tracking-tight mb-8 text-foreground;
+    @apply text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted-foreground max-w-2xl mx-auto mb-12;
   }
 
   .premium-button {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 font-normal tracking-wide;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 font-semibold tracking-wide shadow-lg hover:shadow-xl;
+  }
+
+  .secondary-button {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 font-semibold tracking-wide shadow-lg hover:shadow-xl;
   }
 
   .glass-card {
-    @apply bg-white/90 dark:bg-black/90 backdrop-blur-md border border-border/50;
+    @apply bg-white/90 dark:bg-black/80 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl;
+  }
+
+  .adventure-gradient {
+    @apply bg-gradient-to-r from-[hsl(var(--adventure))] via-[hsl(var(--forest))] to-[hsl(var(--adventure))];
+  }
+
+  .sunrise-gradient {
+    @apply bg-gradient-to-r from-[hsl(var(--sunrise))] to-[hsl(var(--secondary))];
+  }
+
+  .stat-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 text-white text-center;
+  }
+
+  .feature-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-primary/10 text-primary;
+  }
+
+  .booking-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300;
   }
 }
