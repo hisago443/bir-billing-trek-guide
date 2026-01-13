@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import HeroSection from '@/components/HeroSection';
 import DestinationsShowcase from '@/components/DestinationsShowcase';
-import AccommodationsSection from '@/components/AccommodationsSection';
-import CafesSection from '@/components/CafesSection';
+import ParaglidingSection from '@/components/ParaglidingSection';
+import AllAccommodationsSection from '@/components/AllAccommodationsSection';
+import AllCafesSection from '@/components/AllCafesSection';
 import RentalsSection from '@/components/RentalsSection';
 import TaxiServices from '@/components/TaxiServices';
 import ArticlesSection from '@/components/ArticlesSection';
@@ -23,10 +24,11 @@ const Index = () => {
       <main>
         <HeroSection />
         <DestinationsShowcase />
+        <ParaglidingSection />
         <ActivitiesSection />
         <ArticlesSection />
-        <AccommodationsSection />
-        <CafesSection />
+        <AllAccommodationsSection />
+        <AllCafesSection />
         <RentalsSection />
         <TaxiServices />
         <TestimonialsSection />
@@ -46,7 +48,7 @@ const Index = () => {
       
       {/* Compact AI Planner Sidebar */}
       {showPlanner && (
-        <div className="fixed bottom-6 right-6 w-80 z-50 animate-in slide-in-from-right duration-300">
+        <div className="fixed bottom-6 right-6 w-96 z-50 animate-in slide-in-from-right duration-300">
           <CompactAIPlanner onClose={() => setShowPlanner(false)} />
         </div>
       )}
