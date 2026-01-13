@@ -442,6 +442,123 @@ export const taxiServices = [
   },
 ];
 
+export const paraglidingCompanies = [
+  {
+    id: '1',
+    name: 'Temple Pilots',
+    description: 'One of the most experienced paragliding teams in Bir with over 15 years of flying experience. Known for safety and professionalism.',
+    experience: '15+ Years',
+    flights_completed: '25,000+',
+    price: '₹2,500 - ₹3,500',
+    rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070&auto=format&fit=crop',
+    phone: '+91 98160 00001',
+    email: 'info@templepilots.com',
+    website: 'templepilots.com',
+    features: ['HD Video', 'GoPro Photos', 'Certified Pilots', 'Insurance Included', 'Pickup & Drop'],
+    packages: [
+      { name: 'Short Flight', duration: '15-20 mins', price: '₹2,500', altitude: '800m' },
+      { name: 'Long Flight', duration: '25-35 mins', price: '₹3,500', altitude: '2400m' },
+      { name: 'Cross Country', duration: '45+ mins', price: '₹5,000', altitude: '2400m+' }
+    ]
+  },
+  {
+    id: '2',
+    name: 'Nirvana Adventures',
+    description: 'Premier paragliding operator offering tandem flights, courses, and XC expeditions. BHPA certified instructors.',
+    experience: '12+ Years',
+    flights_completed: '18,000+',
+    price: '₹2,500 - ₹4,000',
+    rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1601024445121-e5b82f020549?q=80&w=2070&auto=format&fit=crop',
+    phone: '+91 98160 00002',
+    email: 'fly@nirvanaadventures.in',
+    website: 'nirvanaadventures.in',
+    features: ['HD Video', 'Professional Photography', 'P1-P4 Courses', 'Equipment Rental', 'Airport Transfer'],
+    packages: [
+      { name: 'Discovery Flight', duration: '15-20 mins', price: '₹2,500', altitude: '800m' },
+      { name: 'High Flight', duration: '25-35 mins', price: '₹3,500', altitude: '2400m' },
+      { name: 'Acro Flight', duration: '20-25 mins', price: '₹4,000', altitude: '2400m' }
+    ]
+  },
+  {
+    id: '3',
+    name: 'Billing Paragliding',
+    description: 'Local team of professional pilots offering safe and thrilling tandem flights with stunning Dhauladhar views.',
+    experience: '10+ Years',
+    flights_completed: '15,000+',
+    price: '₹2,200 - ₹3,200',
+    rating: 4.7,
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop',
+    phone: '+91 98160 00003',
+    email: 'book@billingparagliding.com',
+    website: 'billingparagliding.com',
+    features: ['Video Recording', 'Photos', 'Experienced Pilots', 'Flexible Timing', 'Group Discounts'],
+    packages: [
+      { name: 'Basic Flight', duration: '10-15 mins', price: '₹2,200', altitude: '600m' },
+      { name: 'Standard Flight', duration: '20-25 mins', price: '₹2,800', altitude: '1500m' },
+      { name: 'Premium Flight', duration: '30+ mins', price: '₹3,200', altitude: '2400m' }
+    ]
+  },
+  {
+    id: '4',
+    name: 'SkyHigh Paragliding',
+    description: 'Award-winning paragliding company with multiple national competition winners as pilots.',
+    experience: '8+ Years',
+    flights_completed: '12,000+',
+    price: '₹2,500 - ₹3,500',
+    rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1622292405818-2be4bced1e97?q=80&w=2070&auto=format&fit=crop',
+    phone: '+91 98160 00004',
+    email: 'info@skyhighbir.com',
+    website: 'skyhighbir.com',
+    features: ['4K Video', 'Drone Shots', 'Competition Pilots', 'Acrobatic Flights', 'Training Courses'],
+    packages: [
+      { name: 'Joy Ride', duration: '15-20 mins', price: '₹2,500', altitude: '800m' },
+      { name: 'Adventure Flight', duration: '25-35 mins', price: '₹3,500', altitude: '2400m' },
+      { name: 'Acro Special', duration: '20-25 mins', price: '₹4,500', altitude: '2400m' }
+    ]
+  },
+  {
+    id: '5',
+    name: 'Himalayan Flyers',
+    description: 'Budget-friendly paragliding with experienced local pilots who know every thermal in the valley.',
+    experience: '7+ Years',
+    flights_completed: '8,000+',
+    price: '₹2,000 - ₹3,000',
+    rating: 4.5,
+    image: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?q=80&w=2074&auto=format&fit=crop',
+    phone: '+91 98160 00005',
+    email: 'fly@himalayanflyers.in',
+    website: 'himalayanflyers.in',
+    features: ['Affordable Prices', 'Video Included', 'Local Expertise', 'Safe Equipment', 'Flexible Schedule'],
+    packages: [
+      { name: 'Budget Flight', duration: '10-15 mins', price: '₹2,000', altitude: '600m' },
+      { name: 'Value Flight', duration: '20-25 mins', price: '₹2,500', altitude: '1500m' },
+      { name: 'Complete Experience', duration: '30+ mins', price: '₹3,000', altitude: '2400m' }
+    ]
+  },
+  {
+    id: '6',
+    name: 'Wings Over Bir',
+    description: 'Premium paragliding experiences with personalized attention and luxury transfers included.',
+    experience: '9+ Years',
+    flights_completed: '10,000+',
+    price: '₹3,000 - ₹5,000',
+    rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=2070&auto=format&fit=crop',
+    phone: '+91 98160 00006',
+    email: 'book@wingsoverbir.com',
+    website: 'wingsoverbir.com',
+    features: ['Luxury Experience', '4K Video + Drone', 'Premium Equipment', 'Champagne Celebration', 'Private Transfers'],
+    packages: [
+      { name: 'Silver Experience', duration: '20-25 mins', price: '₹3,000', altitude: '1500m' },
+      { name: 'Gold Experience', duration: '30-40 mins', price: '₹4,000', altitude: '2400m' },
+      { name: 'Platinum Experience', duration: '45+ mins', price: '₹5,000', altitude: '2400m+' }
+    ]
+  },
+];
+
 export const activities = [
   {
     id: '1',
@@ -452,6 +569,7 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=2070&auto=format&fit=crop',
     difficulty: 'Easy',
     duration: '30 mins',
+    category: 'Adventure',
   },
   {
     id: '2',
@@ -462,6 +580,7 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop',
     difficulty: 'Moderate',
     duration: '3 Days',
+    category: 'Trekking',
   },
   {
     id: '3',
@@ -472,6 +591,7 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1609766857326-18a680e00896?q=80&w=2070&auto=format&fit=crop',
     difficulty: 'Easy',
     duration: 'Half Day',
+    category: 'Culture',
   },
   {
     id: '4',
@@ -482,6 +602,7 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?q=80&w=2070&auto=format&fit=crop',
     difficulty: 'Moderate',
     duration: 'Full Day',
+    category: 'Adventure',
   },
   {
     id: '5',
@@ -492,6 +613,7 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070&auto=format&fit=crop',
     difficulty: 'Easy',
     duration: 'Overnight',
+    category: 'Nature',
   },
   {
     id: '6',
@@ -502,6 +624,29 @@ export const activities = [
     image: 'https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=2064&auto=format&fit=crop',
     difficulty: 'Easy',
     duration: 'Flexible',
+    category: 'Wellness',
+  },
+  {
+    id: '7',
+    name: 'Paragliding Course (P1-P2)',
+    description: 'Learn to fly! 5-7 day beginner course with ground handling, theory, and solo flights.',
+    price: '₹25,000 - ₹35,000',
+    location: 'Billing Training Ground',
+    image: 'https://images.unsplash.com/photo-1601024445121-e5b82f020549?q=80&w=2070&auto=format&fit=crop',
+    difficulty: 'Moderate',
+    duration: '5-7 Days',
+    category: 'Training',
+  },
+  {
+    id: '8',
+    name: 'Rajgundha Valley Trek',
+    description: 'Trek to the remote "Mini Switzerland" valley with lush meadows and traditional Himachali villages.',
+    price: '₹3,500 per person',
+    location: 'Starts from Billing',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop',
+    difficulty: 'Moderate',
+    duration: '2 Days',
+    category: 'Trekking',
   },
 ];
 
